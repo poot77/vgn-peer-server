@@ -51,6 +51,18 @@ app.post('/login', (req, res) => {
     }
 });
 
+app.get('/user/:username', (req, res) => {
+    const { username } = req.params;
+    const users = getUsers();
+    const user = users.find(u => u.username === username);
+
+    if (user) {
+        res.json({ exists: true, username: user.username });
+    } else {
+        res.status(404).json({ exists: false, error: 'المستخدم غير موجود' });
+    }
+});
+
 // --- Start Server & PeerJS ---
 const server = app.listen(port, () => {
     console.log(`Server & PeerJS running on port ${port}...`);
