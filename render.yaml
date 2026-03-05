@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: vgn-peer-server
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 18.17.1
+      - key: PORT
+        value: 9000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGODB_URI
+        sync: false
